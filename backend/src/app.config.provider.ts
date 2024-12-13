@@ -1,18 +1,17 @@
-import {ConfigModule} from "@nestjs/config";
+import { registerAs } from '@nestjs/config';
 
-export const configProvider = {
-    imports: [ConfigModule.forRoot()],
-    provide: 'CONFIG',
-    useValue: < AppConfig> {
-        //TODO прочесть переменнные среды
-    },
-}
+export const configProvider = registerAs<AppConfig>('app', () => ({
+  database: {
+    url: process.env.DB_URL ?? 'mongodb://localhost:27017/afisha',
+    driver: process.env.DB_DRIVER ?? 'mongodb',
+  },
+}));
 
 export interface AppConfig {
-    database: AppConfigDatabase
+  database: AppConfigDatabase;
 }
 
 export interface AppConfigDatabase {
-    driver: string
-    url: string
+  driver: string;
+  url: string;
 }
