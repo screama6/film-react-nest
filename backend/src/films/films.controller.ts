@@ -1,20 +1,18 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { FilmsService } from './films.service';
-import { GetFilmByIdDTO } from './dto/films.dto';
+import { GetFilmsByIdDTO, GetFilmsDTO } from './dto/films.dto';
 
 @Controller('films')
 export class FilmsController {
   constructor(private readonly filmsService: FilmsService) {}
 
-  @Get('/')
-  async findAll() {
+  @Get()
+  async findAll(): Promise<GetFilmsDTO> {
     return this.filmsService.findAll();
   }
 
   @Get(':id/schedule')
-  async findById(
-    @Param('id') id: string,
-  ): Promise<{ total: number; items: GetFilmByIdDTO[] }> {
+  async findById(@Param('id') id: string): Promise<GetFilmsByIdDTO> {
     return this.filmsService.findById(id);
   }
 }

@@ -25,3 +25,8 @@ export class GetFilmsDTO {
   items: GetFilmDTO[];
   total: number;
 }
+
+export class GetFilmsByIdDTO {
+  items: GetFilmByIdDTO[];
+  total: number;
+}

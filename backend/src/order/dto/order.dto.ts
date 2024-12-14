@@ -1,9 +1,9 @@
 export class PostOrderDto {
   total: number;
-  items: IBody[];
+  items: IOrder[];
 }
 
-export interface IBody {
+export interface IBodyTicketsDTO {
   film: string;
   session: string;
   daytime: string;
@@ -20,5 +20,11 @@ export interface IOrder {
   row: number;
   seat: number;
   price: number;
-  id: string;
+  id?: string;
+}
+
+export interface IBodyDTO {
+  email: string;
+  phone: string;
+  tickets: IOrder[];
 }
