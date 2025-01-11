@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import {
   CreateOrderDTO,
   IBodyDTO,
@@ -39,16 +39,6 @@ export class OrderRepository {
     };
   }
 
-  private async getFilmsByTickets(
-    tickets: CreateOrderDTO['tickets'],
-  ): Promise<GetFilmDTO[]> {
-    const filmIds = Array.from(new Set(tickets.map((ticket) => ticket.film)));
-    const filmPromises = filmIds.map((filmId) =>
-      this.filmsRepository.findById(filmId),
-    );
-    return Promise.all(filmPromises);
-  }
-
   private async orderTake(
     tickets: CreateOrderDTO['tickets'],
     films: GetFilmDTO[],
@@ -56,8 +46,9 @@ export class OrderRepository {
   ): Promise<void> {
     for (const ticket of tickets) {
       const film = films.find((f) => f.id === ticket.film);
-      if (!film) continue;
-
+      if (!film) {
+        throw new NotFoundException(`Не найден фильм с ID ${ticket.film}`);
+      }
       const schedule = film.schedule.find((s) => s.daytime === ticket.daytime);
 
       if (schedule) {
@@ -107,7 +98,7 @@ export class OrderRepository {
   }
 
   async create(body: IBodyDTO): Promise<PostOrderDto> {
-    const films = await this.getFilmsByTickets(body.tickets);
+    const films = await this.filmsRepository.findAll();
     const ticketsWithId = this.generateTicketsWithId(body.tickets);
     const order = new CreateOrderDTO();
     order.id = faker.string.uuid();
@@ -115,7 +106,7 @@ export class OrderRepository {
     order.phone = order.phone;
     order.tickets = ticketsWithId;
     try {
-      await this.orderTake(body.tickets, films, order);
+      await this.orderTake(body.tickets, films.items, order);
       return {
         total: order.tickets.length,
         items: order.tickets,
