@@ -3,11 +3,11 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { FilmsRepository } from 'src/repository/films.repository';
+import { FilmsRepository } from '../repository/films.repository';
 import { GetFilmByIdDTO, GetFilmsDTO } from './dto/films.dto';
 import { ConfigService } from '@nestjs/config';
-import { FilmsRepositoryPostgres } from 'src/repository/films.repository.postgres';
-import { AppConfig } from 'src/app.config.provider';
+import { FilmsRepositoryPostgres } from '../repository/films.repository.postgres';
+import { AppConfig } from '../app.config.provider';
 import { Schedules } from './entities/shedule.entity';
 
 @Injectable()

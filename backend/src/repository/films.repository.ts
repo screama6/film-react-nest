@@ -5,8 +5,8 @@ import {
   GetFilmByIdDTO,
   GetFilmDTO,
   GetFilmsDTO,
-} from 'src/films/dto/films.dto';
-import { Film } from 'src/films/schemas/film.schema';
+} from '../films/dto/films.dto';
+import { Film } from '../films/schemas/film.schema';
 
 @Injectable()
 export class FilmsRepository {

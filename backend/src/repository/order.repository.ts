@@ -5,13 +5,13 @@ import {
   IBodyDTO,
   IOrder,
   PostOrderDto,
-} from 'src/order/dto/order.dto';
+} from '../order/dto/order.dto';
 import { FilmsRepository } from './films.repository';
-import { GetFilmDTO } from 'src/films/dto/films.dto';
+import { GetFilmDTO } from '../films/dto/films.dto';
 import { ConfigService } from '@nestjs/config';
 import { FilmsRepositoryPostgres } from './films.repository.postgres';
-import { AppConfig } from 'src/app.config.provider';
-import { Schedules } from 'src/films/entities/shedule.entity';
+import { AppConfig } from '../app.config.provider';
+import { Schedules } from '../films/entities/shedule.entity';
 
 @Injectable()
 export class OrderRepository {
