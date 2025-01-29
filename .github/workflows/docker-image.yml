@@ -36,7 +36,7 @@ jobs:
           ${{ runner.os }}-buildx-
 
     - name: Build and push Backend Docker image
-      uses: docker/build-push-action@v6
+      uses: docker/build-push-action@v3
       with:
         context: ./backend
         file: ./backend/Dockerfile
@@ -44,7 +44,7 @@ jobs:
         tags: ghcr.io/${{ github.repository }}/backend:latest
 
     - name: Build and push Front Docker image
-      uses: docker/build-push-action@v6
+      uses: docker/build-push-action@v3
       with:
         context: ./frontend
         file: ./frontend/Dockerfile
