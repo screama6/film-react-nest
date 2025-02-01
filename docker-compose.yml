@@ -1,7 +1,7 @@
 services:
   backend:
     container_name: backend
-    image: ghcr.io/screama6/film-react-nest/backend:latest
+    image: ghcr.io/screama6/film-react-nest/backend:latest@sha256:b50c8430168ebf51ad9ffb5650d9e252cf0f9470984995a679617456c60e8895
     depends_on:
       - postgres
     networks:
@@ -13,7 +13,7 @@ services:
 
   frontend:
     container_name: frontend
-    image: ghcr.io/screama6/film-react-nest/frontend:latest
+    image: ghcr.io/screama6/film-react-nest/frontend:latest@sha256:82c5875449e0d9634ece35c817dab359634975ce8e04d397c2a690586ec8131e
     networks:
       - webnet
     volumes:
