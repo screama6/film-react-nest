@@ -5,7 +5,7 @@ export const configProvider = registerAs<AppConfig>('app', () => {
   const url =
     process.env.DB_URL ??
     (driver === 'postgres'
-      ? 'postgres://prac:test@localhost:5432/prac'
+      ? 'postgres://student:student@localhost:5432/student'
       : 'mongodb://localhost:27017/afisha');
   return {
     database: {
