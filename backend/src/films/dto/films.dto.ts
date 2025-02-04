@@ -14,11 +14,11 @@ export class GetFilmDTO {
 export class GetFilmByIdDTO {
   id: string;
   daytime: string;
-  hall: string;
+  hall: number;
   rows: number;
   seats: number;
   price: number;
-  taken: string[];
+  taken: string[] | string;
 }
 
 export class GetFilmsDTO {
