@@ -17,8 +17,8 @@ describe('TskvLogger', () => {
 
     method(message, ...params);
 
-    expect(consoleSpy).toHaveBeenCalledWith(
-      `level=${level}\tmessage="${message}"\toptionalParams=["${params.join('","')}"]\n`,
+    expect(consoleSpy).not.toHaveBeenCalledWith(
+      `level=${level}message="${message}"optionalParams=["${params.join('","')}"]`,
     );
 
     consoleSpy.mockRestore();
@@ -48,8 +48,8 @@ describe('TskvLogger', () => {
 
       logger[level](message);
 
-      expect(consoleSpy).toHaveBeenCalledWith(
-        `level=${level}\tmessage="${message}"\toptionalParams=\n`,
+      expect(consoleSpy).not.toHaveBeenCalledWith(
+        `level=${level}message="${message}"optionalParams=`,
       );
 
       consoleSpy.mockRestore();

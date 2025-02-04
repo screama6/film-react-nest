@@ -1,7 +1,5 @@
 import { Injectable, LoggerService as NestLoggerService } from '@nestjs/common';
-import DevLogger from './dev.logger';
-import JsonLogger from './json.logger';
-import TskvLogger from './tskv.logger';
+import { DevLogger, JsonLogger, TskvLogger } from './index';
 
 type LoggerType = 'json' | 'tskv' | 'dev';
 

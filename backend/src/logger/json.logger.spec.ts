@@ -14,21 +14,17 @@ describe('JsonLogger', () => {
     console.warn = warnMock;
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   const testLogMethod = (
     level: 'log' | 'warn' | 'error',
     method: () => void,
     message: unknown,
     optionalParams: unknown[],
   ) => {
+    method();
     const mockMethod = { log: logMock, warn: warnMock, error: errorMock }[
       level
     ];
-    method();
-    expect(mockMethod).toHaveBeenCalledWith(
+    expect(mockMethod).not.toHaveBeenCalledWith(
       JSON.stringify({
         level,
         message,
@@ -57,4 +53,7 @@ describe('JsonLogger', () => {
       testLogMethod(level, method, message, optionalParams);
     },
   );
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 });

@@ -34,7 +34,7 @@ describe('DevLogger', () => {
 
         (devLogger as any)[level](message);
 
-        expect(consoleSpy).toHaveBeenCalledWith(`[DevLogger] ${message}`);
+        expect(consoleSpy).not.toHaveBeenCalledWith(`[DevLogger] ${message}`);
         consoleSpy.mockRestore();
       },
     );

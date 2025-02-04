@@ -1,4 +1,5 @@
 import * as winston from 'winston';
+import * as DailyRotateFile from 'winston-daily-rotate-file';
 
 export const winstonConfig = {
   level: 'info',
@@ -15,6 +16,12 @@ export const winstonConfig = {
         winston.format.simple(),
       ),
     }),
-    new winston.transports.File({ filename: 'error.log' }),
+    new DailyRotateFile({
+      filename: 'logs/%DATE%-result.log',
+      datePattern: 'YYYY-MM-DD',
+      zippedArchive: true,
+      maxSize: '20m',
+      maxFiles: '14d',
+    }),
   ],
 };
