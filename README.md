@@ -2,6 +2,11 @@
 
 ## Установка
 
+## Ссылки
+
+На рабочий проект: https://screama6.students.nomorepartiesco.ru/ <br/>
+На pgAdmin: http://screama6.students.nomorepartiesco.ru:8080/
+
 ### MongoDB
 
 Установите MongoDB скачав дистрибутив с официального сайта или с помощью пакетного менеджера вашей ОС. Также можно воспользоваться Docker (см. ветку `feat/docker`.
